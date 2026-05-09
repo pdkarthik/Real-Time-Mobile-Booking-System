@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = 'http://10.0.2.2:5000'; // Match your backend server URL
+const SOCKET_URL = 'https://real-time-mobile-booking-system.onrender.com'; // Match your backend server URL
 
 class SocketService {
   socket = null;

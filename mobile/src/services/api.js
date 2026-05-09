@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://10.0.2.2:5000/api'; // Use 10.0.2.2 for Android emulator to access localhost
+const API_URL = 'https://real-time-mobile-booking-system.onrender.com/api'; // Use 10.0.2.2 for Android emulator to access localhost
 
 export const fetchExperts = async (page = 1, search = '', category = '') => {
   const response = await axios.get(`${API_URL}/experts`, {

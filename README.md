@@ -2,6 +2,12 @@
 
 This is a mobile application built with React Native and the MERN stack (MongoDB, Express, React Native, Node.js) that allows users to find experts and book consultation sessions.
 
+### 📱 Live Interactive Demo
+👉 **[Click here to try the app live in your browser!](https://appetize.io/app/b_vzisgq77cgwig6bciysciziloi)**
+
+### 📦 Download APK
+📥 **[Download the Android APK from Google Drive](https://drive.google.com/file/d/1IB2_MiXPRTQaWauFc0RDrT3OTTUbWKW5/view?usp=drive_link)**
+
 ---
 
 ## Tech Stack
