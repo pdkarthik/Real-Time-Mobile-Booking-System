@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { fetchMyBookings } from '../services/api';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { fetchMyBookings, updateBookingStatus } from '../services/api';
 
 const MyBookingsScreen = () => {
   const [email, setEmail] = useState('');
@@ -20,6 +20,18 @@ const MyBookingsScreen = () => {
       console.error('Error fetching my bookings', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUpdateStatus = async (bookingId, newStatus) => {
+    try {
+      await updateBookingStatus(bookingId, newStatus);
+      setBookings(prevBookings => prevBookings.map(b => 
+        b._id === bookingId ? { ...b, status: newStatus } : b
+      ));
+      Alert.alert('Success', `Booking marked as ${newStatus}`);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to update status');
     }
   };
 
@@ -55,6 +67,19 @@ const MyBookingsScreen = () => {
       <Text style={styles.details}>Time: {formatTimeAMPM(item.timeSlot)}</Text>
       <Text style={styles.details}>Category: {item.expertId?.category}</Text>
       {item.notes ? <Text style={styles.details}>Notes: {item.notes}</Text> : null}
+      
+      <View style={styles.actionRow}>
+        {item.status === 'Pending' && (
+          <TouchableOpacity style={[styles.actionBtn, styles.confirmBtn]} onPress={() => handleUpdateStatus(item._id, 'Confirmed')}>
+            <Text style={styles.actionBtnText}>Confirm Booking</Text>
+          </TouchableOpacity>
+        )}
+        {item.status === 'Confirmed' && (
+          <TouchableOpacity style={[styles.actionBtn, styles.completeBtn]} onPress={() => handleUpdateStatus(item._id, 'Completed')}>
+            <Text style={styles.actionBtnText}>Mark as Completed</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 
@@ -180,6 +205,28 @@ const styles = StyleSheet.create({
     marginTop: 40,
     fontSize: 16,
     color: '#888',
+  },
+  actionRow: {
+    flexDirection: 'row',
+    marginTop: 12,
+    justifyContent: 'flex-end',
+  },
+  actionBtn: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginLeft: 10,
+  },
+  confirmBtn: {
+    backgroundColor: '#4caf50',
+  },
+  completeBtn: {
+    backgroundColor: '#9e9e9e',
+  },
+  actionBtnText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 

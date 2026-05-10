@@ -28,3 +28,8 @@ export const fetchExpertBookings = async (expertId, date) => {
   const response = await axios.get(`${API_URL}/bookings/expert/${expertId}`, { params: { date } });
   return response.data;
 };
+
+export const updateBookingStatus = async (bookingId, status) => {
+  const response = await axios.patch(`${API_URL}/bookings/${bookingId}/status`, { status });
+  return response.data;
+};

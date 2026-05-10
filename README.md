@@ -6,7 +6,7 @@ This is a mobile application built with React Native and the MERN stack (MongoDB
 👉 **[Click here to try the app live in your browser!](https://appetize.io/app/b_vzisgq77cgwig6bciysciziloi)**
 
 ### 📦 Download APK
-📥 **[Download the Android APK from Google Drive](https://drive.google.com/file/d/1IB2_MiXPRTQaWauFc0RDrT3OTTUbWKW5/view?usp=drive_link)**
+📥 **[Download the Android APK from Google Drive](https://drive.google.com/file/d/1g5tUXk1viwv5n6s2G4umM0IrRXUvepj_/view?usp=drive_link)**
 
 ---
 
@@ -66,6 +66,8 @@ The application is designed to be a robust, real-time booking system for schedul
 * MongoDB Atlas account (or local MongoDB)
 * Android Studio (for the Android Emulator)
 * React Native CLI environment setup
+
+> **Note**: The mobile app is currently pre-configured to connect to the live cloud backend. **You can skip the Backend Setup entirely and just run the Mobile Frontend to test the app out-of-the-box!** If you wish to run and test the backend locally on your own machine instead, please update `API_URL` and `SOCKET_URL` in `mobile/src/services/api.js` and `socket.js` to `http://10.0.2.2:5000` before following the steps below.
 
 ### 1. Backend Setup
 1. Open a terminal and navigate to the backend folder:
